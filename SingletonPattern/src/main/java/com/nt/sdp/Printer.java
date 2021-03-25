@@ -27,8 +27,8 @@ public class Printer {
 	
 	
 	/*
-	Sol2:- We can make the factory method synchronized as every thread go single by single
-	*/
+	Sol2:- We can make the factory method synchronized as every thread go single by single  not best
+	
 	public static synchronized Printer getInstance()
 	{
 		if(instance==null)
@@ -37,6 +37,26 @@ public class Printer {
 		}	
 		return instance;
 	}
+	*/
+	
+	/*Sol3:- instead of making full factory method we can use static block
+	 * for the object creation
+	 */
+	
+	public static Printer getInstance()
+	{
+		synchronized (Printer.class) {
+			
+			if(instance==null)
+			{
+				instance=new Printer();
+			}
+		}
+		return instance;
+	}
+	
+	
+	
 	
 	
 	 /*//Factory method for creation of object
